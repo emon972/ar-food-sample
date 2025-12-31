@@ -2,12 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>EMON AR Food Menu</title>
+  <title>AR Food Corner</title>
 
-  <!-- A-Frame -->
   <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-
-  <!-- MindAR -->
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.4/dist/mindar-image-aframe.prod.js"></script>
 
   <style>
@@ -18,37 +15,52 @@
 <body>
 <a-scene
   mindar-image="imageTargetSrc: targets.mind; autoStart: true;"
+  renderer="colorManagement: true; physicallyCorrectLights: true"
   vr-mode-ui="enabled: false"
   device-orientation-permission-ui="enabled: false">
 
+  <!-- ASSETS -->
+  <a-assets>
+    <!-- Replace these with REAL food models -->
+    <a-asset-item id="burger"
+      src="https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Models@master/2.0/Hamburger/glTF/Hamburger.gltf">
+    </a-asset-item>
+
+    <a-asset-item id="drink"
+      src="https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Models@master/2.0/WaterBottle/glTF/WaterBottle.gltf">
+    </a-asset-item>
+  </a-assets>
+
   <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+  <!-- LIGHTING -->
+  <a-light type="ambient" intensity="0.6"></a-light>
+  <a-light type="directional"
+           position="1 2 1"
+           intensity="1"
+           castShadow="true">
+  </a-light>
 
   <!-- IMAGE TARGET -->
   <a-entity mindar-image-target="targetIndex: 0">
 
-    <!-- 🍔 BURGER -->
-    <a-box position="-0.6 0 0"
-           depth="0.2" height="0.4" width="0.4"
-           color="#D35400"
-           animation="property: rotation; to: 0 360 0; loop: true; dur: 6000">
-    </a-box>
+    <!-- 🍔 REALISTIC BURGER -->
+    <a-entity gltf-model="#burger"
+              position="-0.5 0 0"
+              scale="0.25 0.25 0.25"
+              shadow="cast: true; receive: true"
+              animation="property: position; dir: alternate; dur: 3000; loop: true; to: -0.5 0.1 0">
+    </a-entity>
 
-    <!-- 🥪 SANDWICH -->
-    <a-box position="0 0 0"
-           depth="0.2" height="0.3" width="0.5"
-           color="#F1C40F"
-           animation="property: position; dir: alternate; dur: 2000; loop: true; to: 0 0.15 0">
-    </a-box>
-
-    <!-- 🥤 DRINK -->
-    <a-cylinder position="0.6 0 0"
-                radius="0.15" height="0.5"
-                color="#3498DB"
-                animation="property: rotation; to: 360 0 0; loop: true; dur: 5000">
-    </a-cylinder>
+    <!-- 🥤 REALISTIC DRINK -->
+    <a-entity gltf-model="#drink"
+              position="0.5 0 0"
+              scale="0.45 0.45 0.45"
+              shadow="cast: true; receive: true"
+              animation="property: rotation; to: 0 360 0; loop: true; dur: 10000">
+    </a-entity>
 
   </a-entity>
-
 </a-scene>
 </body>
 </html>
