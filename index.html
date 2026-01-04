@@ -4,11 +4,17 @@
   <meta charset="utf-8">
   <title>AR Food Corner</title>
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.4/dist/mindar-image-aframe.prod.js"></script>
 
   <style>
-    body { margin: 0; overflow: hidden; }
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #000;
+    }
   </style>
 </head>
 
@@ -19,8 +25,9 @@
   vr-mode-ui="enabled: false"
   device-orientation-permission-ui="enabled: false">
 
-  <!-- ASSETS (PNG IMAGES) -->
+  <!-- ASSETS -->
   <a-assets>
+    <img id="logo-img" src="logo.png">
     <img id="burger-img" src="burger.png">
     <img id="pizza-img" src="pizza.png">
     <img id="drink-img" src="drink.png">
@@ -31,7 +38,21 @@
   <!-- IMAGE TARGET -->
   <a-entity mindar-image-target="targetIndex: 0">
 
-    <!-- BURGER PNG -->
+    <!-- AI LOGO -->
+    <a-plane
+      src="#logo-img"
+      position="0 0.85 0"
+      width="1.3"
+      height="0.6"
+      transparent="true"
+      material="shader: flat; opacity: 0.95"
+
+      animation__fade="property: material.opacity; from: 0; to: 1; dur: 1500"
+      animation__scale="property: scale; from: 0.5 0.5 0.5; to: 1 1 1; dur: 1200; easing: easeOutElastic"
+      animation__float="property: position; dir: alternate; dur: 3000; loop: true; to: 0 0.95 0">
+    </a-plane>
+
+    <!-- BURGER -->
     <a-plane
       src="#burger-img"
       position="-0.7 0 0"
@@ -41,7 +62,7 @@
       animation="property: position; dir: alternate; dur: 2500; loop: true; to: -0.7 0.1 0">
     </a-plane>
 
-    <!-- PIZZA PNG -->
+    <!-- PIZZA -->
     <a-plane
       src="#pizza-img"
       position="0 0 0"
@@ -51,7 +72,7 @@
       animation="property: rotation; to: 0 360 0; loop: true; dur: 10000">
     </a-plane>
 
-    <!-- DRINK PNG -->
+    <!-- DRINK -->
     <a-plane
       src="#drink-img"
       position="0.7 0 0"
@@ -81,4 +102,5 @@
   </a-entity>
 </a-scene>
 </body>
+</html>
 </html>
