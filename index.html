@@ -15,69 +15,63 @@
 <body>
 <a-scene
   mindar-image="imageTargetSrc: targets.mind; autoStart: true;"
-  renderer="colorManagement: true; physicallyCorrectLights: true"
+  renderer="colorManagement: true;"
   vr-mode-ui="enabled: false"
   device-orientation-permission-ui="enabled: false">
 
-  <!-- ASSETS (REALISTIC MODELS) -->
+  <!-- ASSETS (PNG IMAGES) -->
   <a-assets>
-    <!-- 🍔 REAL BURGER -->
-    <a-asset-item id="burger"
-      src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Hamburger/glTF-Binary/Hamburger.glb">
-    </a-asset-item>
-
-    <!-- 🍕 REAL PIZZA -->
-    <a-asset-item id="pizza"
-      src="https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/models/gltf/Pizza.glb">
-    </a-asset-item>
-
-    <!-- 🥤 REAL DRINK -->
-    <a-asset-item id="drink"
-      src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/WaterBottle/glTF-Binary/WaterBottle.glb">
-    </a-asset-item>
+    <img id="burger-img" src="burger.png">
+    <img id="pizza-img" src="pizza.png">
+    <img id="drink-img" src="drink.png">
   </a-assets>
 
   <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-  <!-- REALISTIC LIGHTING -->
-  <a-light type="ambient" intensity="0.6"></a-light>
-  <a-light type="directional" position="1 2 1" intensity="1.2" castShadow="true"></a-light>
-
   <!-- IMAGE TARGET -->
   <a-entity mindar-image-target="targetIndex: 0">
 
-    <!-- 🍔 BURGER -->
-    <a-entity gltf-model="#burger"
-      position="-0.6 0 0"
-      scale="0.25 0.25 0.25"
-      shadow="cast: true; receive: true"
-      animation="property: position; dir: alternate; dur: 3000; loop: true; to: -0.6 0.1 0">
-    </a-entity>
+    <!-- BURGER PNG -->
+    <a-plane
+      src="#burger-img"
+      position="-0.7 0 0"
+      width="0.6"
+      height="0.6"
+      transparent="true"
+      animation="property: position; dir: alternate; dur: 2500; loop: true; to: -0.7 0.1 0">
+    </a-plane>
 
-    <!-- 🍕 PIZZA -->
-    <a-entity gltf-model="#pizza"
+    <!-- PIZZA PNG -->
+    <a-plane
+      src="#pizza-img"
       position="0 0 0"
-      scale="0.35 0.35 0.35"
-      shadow="cast: true; receive: true"
-      animation="property: rotation; to: 0 360 0; loop: true; dur: 12000">
-    </a-entity>
+      width="0.7"
+      height="0.7"
+      transparent="true"
+      animation="property: rotation; to: 0 360 0; loop: true; dur: 10000">
+    </a-plane>
 
-    <!-- 🥤 DRINK -->
-    <a-entity gltf-model="#drink"
-      position="0.6 0 0"
-      scale="0.45 0.45 0.45"
-      shadow="cast: true; receive: true"
-      animation="property: position; dir: alternate; dur: 2500; loop: true; to: 0.6 0.12 0">
-    </a-entity>
+    <!-- DRINK PNG -->
+    <a-plane
+      src="#drink-img"
+      position="0.7 0 0"
+      width="0.5"
+      height="0.8"
+      transparent="true"
+      animation="property: position; dir: alternate; dur: 2300; loop: true; to: 0.7 0.12 0">
+    </a-plane>
 
-    <!-- 🛒 ORDER BUTTON -->
-    <a-plane position="0 -0.9 0"
-      width="1.5" height="0.3"
+    <!-- ORDER BUTTON -->
+    <a-plane
+      position="0 -0.9 0"
+      width="1.5"
+      height="0.3"
       color="#25D366"
       onclick="window.location.href='https://wa.me/8801856096307?text=I%20want%20to%20order%20from%20AR%20Food%20Corner'">
     </a-plane>
 
-    <a-text value="ORDER NOW"
+    <a-text
+      value="ORDER NOW"
       position="0 -0.9 0.01"
       align="center"
       color="#000"
